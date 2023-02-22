@@ -1,0 +1,8 @@
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-color: #a3d9e3;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

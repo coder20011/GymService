@@ -1,0 +1,144 @@
+<app-auth-menu></app-auth-menu>
+<div class="container-fluid ps-md-0">
+    <div class="row g-0">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+        <div class="col-md-8 col-lg-6">
+            <div class="register d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 mt-5">
+                            <h3 class="register-heading mb-4 fw-bold">REGISTER</h3>
+                            <form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm.value)">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="userName" placeholder="Username"
+                                        name="userName" required="required" [(ngModel)]="userDetails.userName"
+                                        #userName="ngModel" minlength="4" />
+                                    <label for="userName">Username</label>
+                                    <div class="text-danger" *ngIf="userName.touched">
+                                        <div *ngIf="userName.errors?.['required'] ">
+                                            User Name cannot be empty
+                                        </div>
+                                        <div *ngIf="userName.invalid && userName.value != ''">
+                                            User Name should be minimum 4
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="firstName" placeholder="FirstName"
+                                        name="firstName" required="required" pattern="[A-Za-z]*"
+                                        [(ngModel)]="userDetails.firstName" #firstName="ngModel" />
+                                    <label for="firstName">FirstName</label>
+                                    <div class="text-danger" *ngIf="firstName.touched">
+                                        <div *ngIf="firstName.errors?.['required']  ">
+                                            firstName cannot be empty
+                                        </div>
+                                        <div *ngIf="firstName.invalid && firstName.value != ''">
+                                            fisrt name should in alphabet
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="lastName" placeholder="LastName "
+                                        name="lastName" pattern="[A-Za-z]*" required="required"
+                                        [(ngModel)]="userDetails.lastName" #lastName="ngModel" />
+                                    <label for="lastName">Last Name</label>
+                                    <div class="text-danger" *ngIf="lastName.touched">
+                                        <div *ngIf="lastName.errors?.['required']  ">
+                                            lastName cannot be empty
+                                        </div>
+                                        <div *ngIf="lastName.invalid && lastName.value != ''">
+                                            lastName name should be in alphabet
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="password" placeholder="Password"
+                                        name="password" required="required"
+                                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                        [(ngModel)]="userDetails.password" #password="ngModel" />
+                                    <label for="password">Password</label>
+                                    <div class="text-danger" *ngIf="password.touched">
+                                        <div *ngIf="password.errors?.['required']">
+                                            Password cannot be empty
+                                        </div>
+                                        <div *ngIf="password.invalid && password.value != ''">
+                                            Password must contain alphanumeric characters and be at least 8 characters
+                                            long
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="confirmPassword"
+                                        placeholder="Confirm Password" name="confirmPassword" required="required"
+                                        [(ngModel)]="userDetails.confirmPassword" #confirmPassword="ngModel" />
+                                    <label for="confirmPassword">Confirm Password</label>
+                                    <div class="text-danger" *ngIf="confirmPassword.touched">
+                                        <div class="text-danger" *ngIf="confirmPassword.errors?.['required']">
+                                            Confirm Password cannot be empty
+                                        </div>
+                                        <div *ngIf="
+                        confirmPassword.value != [password.value] &&
+                        confirmPassword.value != ''
+                      ">
+                                            Password missmatch
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="emailId" placeholder="EmailId"
+                                        name="emailId" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" required="required"
+                                        [(ngModel)]="userDetails.emailId" #emailId="ngModel" />
+                                    <label for="emailId"> Email Id</label>
+                                    <div class="text-danger" *ngIf="emailId.touched">
+                                        <div *ngIf="emailId.errors?.['required']">
+                                            emailId cannot be empty
+                                        </div>
+                                        <div *ngIf="emailId.invalid && emailId.value != ''">
+                                            Enter a valid Email Id
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="contactNumber"
+                                        placeholder="Contact Number" name="contactNumber" required="required"
+                                        [(ngModel)]="userDetails.contactNumber" #contactNumber="ngModel"
+                                        pattern="[0-9]{10}" />
+                                    <label for="contactNumber"> Contact Number</label>
+                                    <div class="text-danger" *ngIf="contactNumber.touched">
+                                        <div *ngIf="contactNumber.errors?.['required'] ">
+                                            contact Number cannot be empty
+                                        </div>
+                                        <div *ngIf="contactNumber.invalid && contactNumber.value != ''">
+                                            contact Number should be 10 digits
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="userType">User Type:</label>&nbsp;
+                                    <select id="userType" name="userType" placeholder="select"
+                                        [(ngModel)]="userDetails.userType" required="required">
+                                        <!-- formControlName="userType"  add ng model  -->
+                                        <option value="user">User</option>
+                                        <option value="trainer">Trainer</option>
+                                        <!-- <option value="admin">Admin</option> -->
+                                    </select>
+                                </div>
+
+                                <div class="form-group mt-5">
+                                    <button class="btn btn-lg btn-primary btn-register text-uppercase fw-bold mb-2"
+                                        type="submit"
+                                        [disabled]="!registrationForm.valid">Register</button>&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-lg btn-primary btn-register text-uppercase fw-bold mb-2"
+                                        routerLink="/login">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
