@@ -1,0 +1,42 @@
+<app-user-menu></app-user-menu>
+<header class="masthead">
+    <div class="container h-100 col-6">
+        <div class="row h-100">
+            <div class="col-12 mt-5">
+                <div class="card border-0 shadow my-5">
+                    <div class="card-body p-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 text-center">BMI Calculator</h3>
+                        <form [formGroup]="bmiForm">
+                            <div class="form-floating mb-3">
+
+                                <input type="text" class="form-control" id="height" name="height" placeholder="Height"
+                                    formControlName="height">
+                                <label for="height">Enter Height (in meter):</label>
+                                <div class="text-danger"
+                                    *ngIf="bmiForm.controls['height'].invalid && (bmiForm.controls['height'].dirty || bmiForm.controls['height'].touched)">
+                                    Height should be in number and it cannot be empty</div>
+                            </div>
+                            <div class="form-floating mb-3">
+
+                                <input type="text" class="form-control" id="weight" name="weight" placeholder="Height"
+                                    formControlName="weight">
+                                <label for="weight">Enter Weight (in kilogram):</label>
+                                <div class="text-danger"
+                                    *ngIf="bmiForm.controls['weight'].invalid && (bmiForm.controls['weight'].dirty || bmiForm.controls['weight'].touched)">
+                                    Weight should be in number and it cannot be empty</div>
+                            </div>
+                            <br>
+                            <button class="btn btn-primary" [disabled]="!bmiForm.valid"
+                                (click)="onSubmit(bmiForm.value)">Calculate</button>&nbsp;&nbsp;
+                            <input type="reset" class="btn btn-secondary" >
+                        </form>
+                        <br>
+                        <div>
+                            <p class="text-warning text-center fs-3">{{bmiInfo}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
